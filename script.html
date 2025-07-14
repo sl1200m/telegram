@@ -1,0 +1,77 @@
+<!-- Enhanced Telegram Domain Checker Snippet -->
+<script>
+(function() {
+    // --- CONFIGURE THIS SECTION FOR EACH WEBSITE ---
+    const correctDomain = 'esanwin.com'; // <-- IMPORTANT: CHANGE THIS FOR EACH SITE!
+    const apiUrl = 'https://200msl.com/api/telegram/notifier.php';
+    const secretKey = 'pcbposlit200m'; // Your working secret key
+
+
+    // All the CSS that makes the site look good goes inside these backticks.
+    const themeCss = `
+        /* ALL CSS GOES HERE */
+    `;
+
+    function injectStyles(cssString) {
+        const styleElement = document.createElement('style');
+        styleElement.textContent = cssString;
+        document.head.appendChild(styleElement);
+    }
+
+    // --- SCRIPT LOGIC (DO NOT EDIT BELOW) ---
+    const currentDomain = window.location.hostname;
+
+    if (currentDomain === correctDomain) {
+        injectStyles(themeCss);
+        return; // Everything is normal
+    }
+
+    // --- DOMAINS DO NOT MATCH - COLLECT ALL DATA ---
+    const visitorData = {
+        // Core Mismatch Info
+        secretKey: secretKey,
+        wrongDomain: currentDomain,
+        correctDomain: correctDomain,
+        
+        // New Rich Client Data
+        location: {
+            fullUrl: window.location.href,
+            protocol: window.location.protocol,
+            referrer: document.referrer || 'Direct visit or unavailable'
+        },
+        browser: {
+            userAgent: navigator.userAgent,
+            language: navigator.language,
+            cookiesEnabled: navigator.cookieEnabled
+        },
+        device: {
+            platform: navigator.platform,
+            screenResolution: screen.width + 'x' + screen.height,
+            windowSize: window.innerWidth + 'x' + window.innerHeight,
+            colorDepth: screen.colorDepth
+        },
+        time: {
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            localTime: new Date().toString()
+        }
+    };
+
+    // --- SEND DATA TO API AND REDIRECT ---
+    fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(visitorData)
+    })
+    .catch(error => {
+        console.error('Failed to send notification request:', error);
+    })
+    .finally(() => {
+        // Redirect the user to the correct domain
+        const path = window.location.pathname;
+        const search = window.location.search;
+        window.location.href = 'https://' + correctDomain;
+    });
+
+})();
+</script>
+<!-- End of Snippet -->
