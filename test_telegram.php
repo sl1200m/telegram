@@ -2,8 +2,8 @@
 // --- A SIMPLE SCRIPT TO TEST ONLY THE TELEGRAM CONNECTION ---
 
 // Your configuration from the other script
-$botToken = '7569832489:AAH4sfqRdC8fl_ttcV1VOszIJtT-KXDwlYs';
-$chatId = ['-1002897399360','789124064'];
+$botToken = '';
+$chatId = '';
 
 // A simple, hardcoded message. We use 'HTML' parse_mode because it's more forgiving.
 $message = "<b>This is a test message.</b>\nIf you see this, your PHP script and Telegram connection are working.";
