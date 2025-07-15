@@ -1,8 +1,8 @@
 <?php
 // --- CONFIGURATION ---
-$botToken = '7569832489:AAH4sfqRdC8fl_ttcV1VOszIJtT-KXDwlYs';
-$chatId = '-1002897399360';
-$secretKey = 'pcbposlit200m';
+$botToken = '';
+$chatId = '';
+$secretKey = '';
 
 // --- HELPER FUNCTION TO FIX MARKDOWN ERRORS ---
 // We will only use this for text NOT inside backticks if needed.
